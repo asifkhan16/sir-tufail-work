@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Ajax Request</title>
+</head>
+
+<body>
+    <button id="send_request">Send Request</button>
+    <div id="resp" style="color:red;">We will receive our response here...</div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+        $(this).on("click", "#send_request", function(e) {
+
+            var resp = $("#resp");
+            resp.html("Sending Request...");
+
+            $.ajax({
+                type: 'post',
+                url: 'ajaxtest.php',
+                data: { op: "test", id: 5 },
+
+                success: function(r) {
+                    resp.html(r);
+                },
+
+                error: function(e) {
+                    resp.html("Some error occured. Try later.");
+                }
+
+            }); //END OF AJAX;
+
+        }); //END OF CLICK EVENT
+
+    }); //END OF READY
+    </script>
+</body>
+
+</html>
